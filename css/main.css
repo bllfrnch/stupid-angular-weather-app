@@ -1,0 +1,80 @@
+body {
+  background-color: black;
+  font-family: monospace;
+  font-size: 1.5em;
+  color: #0f0;
+  margin: 1em;
+  padding: 0;
+}
+
+a {
+  color: #8f6;
+  font-weight: bold;
+}
+
+form {
+  /* display: inline-block; */
+  margin: 0 1em 1em 0;
+  position: relative;
+}
+
+.autocomplete {
+  background-color: #666;
+  left: 0;
+  list-style: none;
+  margin-top: 0px;
+  padding: 0;
+  position: absolute;
+  right: 0;
+  z-index: 2;
+}
+
+.autocomplete li a {
+  display: block;
+  padding: .5em 1em;
+}
+
+.autocomplete li a:hover {
+  background-color: #6b6b6b;
+}
+
+label {
+  display: block;
+}
+
+fieldset {
+  background-color: #333;
+  border: none;
+  margin: 0;
+  padding: 1em;
+}
+
+fieldset label {
+  display: inline;
+}
+
+input[placeholder="city name"] {
+  font-size: 2em;
+  width: 100%;
+}
+
+input {
+  font-size: 1em;
+}
+
+input[type="submit"] {
+  font-size: 1em;
+  padding: 1em;
+}
+
+.meta-name {
+  font-weight: bold;
+}
+
+.weather-icon {
+  background-color: white;
+  display: inline-block;
+  height: 50px;
+  repeat: no-repeat;
+  width: 50px
+}

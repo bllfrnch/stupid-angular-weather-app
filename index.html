@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html ng-app="app">
+  <head>
+    <script data-require="angular.js@1.4.3" data-semver="1.4.3" src="https://code.angularjs.org/1.4.3/angular.js"></script>
+    <link rel="stylesheet" href="css/main.css" />
+    <script src="js/main.js"></script>
+  </head>
+
+  <body ng-controller="MainController">
+    <h1>Stupid Angular Weather App</h1>
+    <form class-"search-form">
+      <label for="search">Search for weather by city name:</label>
+      <input id="search" placeholder="city name" ng-model="searchString" ng-keyup="fetchLocations(searchString)">
+      <div class="autocomplete-wrapper">
+        <ul class="autocomplete ng-hide" ng-show="searchString.length > 2">
+          <li ng-repeat="val in locations.data.list">
+            <a href="#" ng-click="fetchWeatherList(val.coord.lat, val.coord.lon)">
+              {{ val.name}} ({{ val.coord.lat }}, {{ val.coord.lon }})
+            </a>
+          </li>
+        </ul>
+      </div>
+    </form>
+    <form class="geolocation-form">
+      <label for="lat-lon">Search for weather by latitude and longitude:</label>
+      <fieldset id="lat-lon">
+        <label>Lat: <input placeholder="latitude" ng-model="latitude"></label>
+        <label>Lon: <input placeholder="longitude" ng-model="longitude"></label>
+        <input type="submit" ng-click="fetchWeatherList(latitude, longitude)">
+      </fieldset>
+    </form>
+    <div>
+      <ul class="weather-list">
+        <li ng-repeat="val in weather.data.list">
+          <a href="#" ng-click="fetchWeatherDetails(val.id)">{{val.name}}</a>
+          <span class="desc" ng-model="description">{{ val.weather[0].description }}</span>
+          <span class="current-temp meta-name" ng-model="currentTmp">NOW</span>: <span class="meta-value">{{ convert(val.main.temp) }}ºF</span>
+          <span class="high-temp meta-name" ng-model="highTemp">HI</span>: <span class="meta-value"> {{ convert(val.main.temp_max) }}ºF</span>
+          <span class="low-temp meta-name" ng-model="lowTemp">LOW</span>: <span class="meta-value"> {{ convert(val.main.temp_min) }}ºF</span>
+        </li>
+      </ul>
+      <div class="forecast-detail" ng-if="weatherDetails">
+        <h2>Weather Forecast for {{ weatherDetails.data.city.name }}, {{ weatherDetails.data.city.country }}</h2>
+        <ul>
+          <li ng-repeat="val in weatherDetails.data.list">
+            <h3>{{ val.dt_txt }}</h3>
+            <div>
+              <span class="meta-value">{{ convert(val.main.temp) }}ºF</span>
+              <span class="high-temp meta-name">HI</span>: <span class="meta-value"> {{ convert(val.main.temp_max) }}ºF</span>
+              <span class="low-temp meta-name">LOW</span>: <span class="meta-value"> {{ convert(val.main.temp_min) }}ºF</span>
+              <span class="low-temp meta-name">PRESSURE</span>: <span class="meta-value"> {{ val.main.pressure }}</span>
+              <span class="low-temp meta-name">HUMIDITY</span>: <span class="meta-value"> {{ val.main.humidity }}</span>
+            </div>
+            <div>
+              <p><span class="weather-icon" style="background-image: url(http://openweathermap.org/img/w/{{ val.weather[0].icon }}.png)"></span>{{ val.weather[0].main }}, {{ val.weather[0].description }}</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "name": "Stupid Angular Weather App",
+  "version": "0.1",
+  "authors": [
+    "Bill French <bfrench@hugeinc.com>"
+  ],
+  "description": "First foray into Angular",
+  "main": "index.html",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.3"
+  }
+}
